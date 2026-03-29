@@ -18,7 +18,7 @@ echo "=== Node version: $(node --version) ==="
 # --- Install pnpm ---
 export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 export COREPACK_ENABLE_STRICT=0
-npm install -g pnpm@9.15.4
+npm install -g --force pnpm@9.15.4
 
 echo "=== pnpm version: $(pnpm --version) ==="
 
