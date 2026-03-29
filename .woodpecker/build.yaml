@@ -1,0 +1,63 @@
+---
+when:
+  - event: push
+    branch: ${CI_REPO_DEFAULT_BRANCH}
+  - event: [pull_request, manual, tag]
+
+steps:
+  - name: git-batch
+    image: quay.io/thegeeklab/git-batch
+    commands:
+      - git batch -vv
+  - name: lint-md
+    image: quay.io/opencloudeu/nodejs-alpine-ci:24
+    commands:
+      - pnpm install
+      - pnpm lint:md
+  - name: format-check
+    image: quay.io/opencloudeu/nodejs-alpine-ci:24
+    commands:
+      - pnpm install
+      - pnpm format:check
+  - name: build
+    image: quay.io/opencloudeu/nodejs-alpine-ci:24
+    commands:
+      - pnpm install
+      - pnpm list likec4
+      - pnpm build-likec4
+      - pnpm build
+  - name: deploy-staging
+    image: debian:latest
+    environment:
+      SSH_KEY:
+        from_secret: ssh-key-staging
+      REMOTE_HOST:
+        from_secret: remote-host-staging
+    when:
+      event: push
+      branch: ${CI_REPO_DEFAULT_BRANCH}
+    commands:
+      - apt-get update
+      - apt-get install -y openssh-client rsync
+      - mkdir -p $HOME/.ssh
+      - ssh-keyscan -t rsa $REMOTE_HOST >> $HOME/.ssh/known_hosts
+      - echo "$SSH_KEY" > "$HOME/.ssh/id_rsa"
+      - chmod 0600 $HOME/.ssh/id_rsa
+      - rsync -a --exclude '.git' --delete ./build/ $REMOTE_HOST:/var/opencloud-docs
+  - name: deploy-production
+    image: debian:latest
+    environment:
+      SSH_KEY:
+        from_secret: ssh-key-production
+      REMOTE_HOST:
+        from_secret: remote-host-production
+    when:
+      event: tag
+    commands:
+      - apt-get update
+      - apt-get install -y openssh-client rsync
+      - mkdir -p $HOME/.ssh
+      - ssh-keyscan -t rsa $REMOTE_HOST >> $HOME/.ssh/known_hosts
+      - echo "$SSH_KEY" > "$HOME/.ssh/id_rsa"
+      - chmod 0600 $HOME/.ssh/id_rsa
+      - rsync -a --exclude '.git' --delete ./build/ woodpeckersyncer@$$REMOTE_HOST:/var/opencloud-docs

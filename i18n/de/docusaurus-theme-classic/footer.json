@@ -1,0 +1,58 @@
+{
+  "link.title.Docs": {
+    "message": "Docs",
+    "description": "The title of the footer links column with title=Docs in the footer"
+  },
+  "link.title.Community": {
+    "message": "Community",
+    "description": "The title of the footer links column with title=Community in the footer"
+  },
+  "link.title.More": {
+    "message": "More",
+    "description": "The title of the footer links column with title=More in the footer"
+  },
+  "link.item.label.User": {
+    "message": "User",
+    "description": "The label of footer link with label=User linking to /docs/user/intro"
+  },
+  "link.item.label.Admin": {
+    "message": "Admin",
+    "description": "The label of footer link with label=Admin linking to /docs/admin/intro"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/opencloud-eu"
+  },
+  "copyright": {
+    "message": "Copyright © 2025 OpenCloud, powered by Heinlein Gruppe",
+    "description": "The footer copyright"
+  },
+  "link.item.label.OpenCloud Community": {
+    "message": "OpenCloud Community",
+    "description": "The label of footer link with label=OpenCloud Community linking to https://opencloud.eu/opencloud-community"
+  },
+  "link.item.label.OpenCloud": {
+    "message": "OpenCloud",
+    "description": "The label of footer link with label=OpenCloud linking to https://opencloud.eu/"
+  },
+  "link.item.label.Blog & News": {
+    "message": "Blog & News",
+    "description": "The label of footer link with label=Blog & News linking to https://opencloud.eu/blog-news"
+  },
+  "link.item.label.Linkedin": {
+    "message": "Linkedin",
+    "description": "The label of footer link with label=Linkedin linking to https://www.linkedin.com/company/opencloud-eu"
+  },
+  "link.item.label.Mastodon": {
+    "message": "Mastodon",
+    "description": "The label of footer link with label=Mastodon linking to https://social.opencloud.eu/@OpenCloud"
+  },
+  "link.item.label.Bluesky": {
+    "message": "Bluesky",
+    "description": "The label of footer link with label=Bluesky linking to https://bsky.app/profile/opencloud.eu"
+  },
+  "link.item.label.Dev": {
+    "message": "Dev",
+    "description": "The label of footer link with label=Dev linking to /docs/dev/intro"
+  }
+}
